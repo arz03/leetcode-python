@@ -1,36 +1,31 @@
 #https://leetcode.com/problems/contains-duplicate/
 
-#Beats time, uses set
-class Solution:
+class Solution(object):
     def containsDuplicate(self, nums):
-        return len(set(nums)) != len(nums)
-    
-obj = Solution()
-print(obj.containsDuplicate([1,2,3,4,5]))
-print(obj.containsDuplicate([1,2,3,4,4]))
-print(obj.containsDuplicate([]))
-
-#Using lambda
-class Solution:
-    containsDuplicate = lambda self, nums: len(set(nums)) != len(nums)
-
-obj = Solution()
-print(obj.containsDuplicate([1,2,3,4,5]))
-print(obj.containsDuplicate([1,2,3,4,4]))
-print(obj.containsDuplicate([]))
-
-#Beats memory, uses loop
-class Solution:
-    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
         nums.sort()
-        i = 0
-        while(i < len(nums)-1):
-            if nums[i] == nums[i+1]:
-                return True
-            i+=1
+        if len(nums)>1:
+            for i in range(0,len(nums)):
+                if nums[i] == nums[i-1]:
+                    return True
         return False
-    
-obj = Solution()
-print(obj.containsDuplicate([1,2,3,4,5]))
-print(obj.containsDuplicate([1,2,3,4,4]))
-print(obj.containsDuplicate([]))
+
+#     Exceeds time limit ==> time complexity
+#        p=0
+#        limt=len(nums)
+#        while p<limt:
+#            ch = nums[p]
+#            co=0
+#            for o in nums:
+#                if o == ch:
+#                    co=co+1
+#                else:
+#                    pass
+#            if co>=2:
+#                return True
+#            else:
+#                p=p+1
+#        return False
